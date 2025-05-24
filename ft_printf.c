@@ -14,6 +14,8 @@
 #include <unistd.h>
 #include <stdarg.h>
 
+int	handle_identifiers(int c);
+
 int	ft_printf(const char *s, ...)
 {
 	// Make an array of nr of arguments
@@ -26,8 +28,11 @@ int	ft_printf(const char *s, ...)
 		// Based on commas
 	i = 0;
 	while (s[i])
-		if (s[i] == '%' && s[i + 1])
+	{
+		if (s[i] == '%')
 			// fucntions
+			if (s[i + 1])
+				handle_identifiers(s[i + 1]);
 	// When it encounters % check the next char to see which function to execute
 	// 		Make it have correspondent index to arguments_array
 	//		if == 'c' -> printchar
@@ -43,5 +48,6 @@ int	ft_printf(const char *s, ...)
 	// While string -> putstr/putchar.
 		putchar(s[i]);
 	i++;
+	}
 	return (1);
 }
