@@ -24,11 +24,10 @@ int	ft_printf(const char *s, ...)
 	// Check if number of arguments == nr of %
 	// return (0);
 		// Based on commas
-	// While string -> putstr/putchar.
+	i = 0;
 	while (s[i])
-		if (s[i] == '%')
+		if (s[i] == '%' && s[i + 1])
 			// fucntions
-		putchar(s[i]);
 	// When it encounters % check the next char to see which function to execute
 	// 		Make it have correspondent index to arguments_array
 	//		if == 'c' -> printchar
@@ -41,5 +40,8 @@ int	ft_printf(const char *s, ...)
 	//		if == 'x' -> puthex_lowercase?
 	//		if == 'X' -> puthex_uppercase?
 	//		if == '%' -> putchar '%'?
+	// While string -> putstr/putchar.
+		putchar(s[i]);
+	i++;
 	return (1);
 }
