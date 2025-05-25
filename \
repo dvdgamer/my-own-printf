@@ -6,7 +6,7 @@
 /*   By: dponte <dponte@student.codam.nl>            +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2025/05/23 11:38:09 by dponte       #+#    #+#                  */
-/*   Updated: 2025/05/25 14:44:10 by dponte       ########   odam.nl          */
+/*   Updated: 2025/05/25 14:25:33 by dponte       ########   odam.nl          */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	ft_putnbr(int n)
 	num = n;
 	if (num < 0)
 	{
-		// replace
 		putchar('-');
 		num = -num;
 	}
@@ -37,25 +36,21 @@ void	ft_putstr(char *s)
 	write(1, s, strlen(s));
 }
 
-void	handle_hex(int c);
-
 void	handle_identifiers(int c, va_list *args)
 {
-	if (c == 'h' || c == 'x'|| c == 'X')
-		handle_hex(c);
-	else if (c == 'c')
+	if (c == 'c')
 	{
 		int	ch;
 		ch = va_arg(*args, int);
 		putchar(ch);
 	}
-	else if (c == 'd' || c == 'i')
+	if (c == 'd')
 	{
 		int	d;
 		d = va_arg(*args, int);
 		ft_putnbr(d);
 	}
-	else if (c == '%')
+	if (c == '%')
 		putchar('%');
 	if (c == 's')
 	{
@@ -63,7 +58,7 @@ void	handle_identifiers(int c, va_list *args)
 		str = va_arg(*args, char *);
 		ft_putstr(str);
 	}
-	else if (c == 'p')
+	if (c == 'p')
 	{
 		void	*ptr;
 		ptr = va_arg(*args, void*);
@@ -72,20 +67,24 @@ void	handle_identifiers(int c, va_list *args)
 	else
 		return ;//invalid identifier
 }
-//		if == 's' -> putstr
-//		if == 'p' -> printnbr in hex??
-//		if == 'd' -> print decimal
-//		if == 'i' -> putnbr
-//		if == 'u' -> print unsigned decimal
-//		if == 'x' -> puthex_lowercase?
-//		if == 'X' -> puthex_uppercase?
+
+			//		if == 's' -> putstr
+			//		if == 'p' -> printnbr in hex??
+			//		if == 'd' -> print decimal
+			//		if == 'i' -> putnbr
+			//		if == 'u' -> print unsigned decimal
+			//		if == 'x' -> puthex_lowercase?
+			//		if == 'X' -> puthex_uppercase?
 
 int	ft_printf(const char *s, ...)
 {
+	// Make an array of nr of arguments
 	va_list	args;
 	int		count;
+	void	*ptr;
 
 	va_start(args, s);
+	// Check if number of arguments == nr of %
 	while (*s)
 	{
 		if (*s == '%')
@@ -116,8 +115,7 @@ int main(void)
 {
     char *str = "Hello";
     ft_printf("aa\n");
-    ft_printf("aa \n%c\n%d\n%%\n%s\n%c\n%", '2', 32123, str, 49);
-	printf("\n%c\n%", 49);
+    ft_printf("aa \n%c\n%d\n%%\n%s\n%c %", '2', 32123, str, 5);
     return 0;
 }
 
