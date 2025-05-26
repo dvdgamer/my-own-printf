@@ -37,48 +37,45 @@ void	ft_putstr(char *s)
 	write(1, s, strlen(s));
 }
 
-void	handle_hex(int c);
+void	handle_hex(int c)
+{
+	putchar(c);
+}
 
 void	handle_identifiers(int c, va_list *args)
 {
+	int		d;
+	int		ch;
+	char	*str;
+	void	*ptr;
+
 	if (c == 'h' || c == 'x'|| c == 'X')
 		handle_hex(c);
 	else if (c == 'c')
 	{
-		int	ch;
 		ch = va_arg(*args, int);
 		putchar(ch);
 	}
 	else if (c == 'd' || c == 'i')
 	{
-		int	d;
 		d = va_arg(*args, int);
 		ft_putnbr(d);
 	}
 	else if (c == '%')
 		putchar('%');
-	if (c == 's')
+	else if (c == 's')
 	{
-		char	*str;
 		str = va_arg(*args, char *);
 		ft_putstr(str);
 	}
 	else if (c == 'p')
 	{
-		void	*ptr;
-		ptr = va_arg(*args, void*);
+		ptr = va_arg(*args, void *);
 		ft_putstr(ptr);
 	}
 	else
 		return ;//invalid identifier
 }
-//		if == 's' -> putstr
-//		if == 'p' -> printnbr in hex??
-//		if == 'd' -> print decimal
-//		if == 'i' -> putnbr
-//		if == 'u' -> print unsigned decimal
-//		if == 'x' -> puthex_lowercase?
-//		if == 'X' -> puthex_uppercase?
 
 int	ft_printf(const char *s, ...)
 {
@@ -86,6 +83,7 @@ int	ft_printf(const char *s, ...)
 	int		count;
 
 	va_start(args, s);
+	count = 0;
 	while (*s)
 	{
 		if (*s == '%')
@@ -116,8 +114,11 @@ int main(void)
 {
     char *str = "Hello";
     ft_printf("aa\n");
-    ft_printf("aa \n%c\n%d\n%%\n%s\n%c\n%", '2', 32123, str, 49);
-	printf("\n%c\n%", 49);
-    return 0;
+    ft_printf("ft printing ft_printf: %d\n\n", ft_printf("aa \n%c\n%d\n%%\n%s\n%c\n", '2', 32123, str, 49));
+    ft_printf("ft_printf printing printf: %d\n\n", printf("aa \n%c\n%d\n%%\n%s\n%c\n", '2', 32123, str, 49));
+    printf("printf printing ft_printf: %d\n\n", ft_printf("aa \n%c\n%d\n%%\n%s\n%c\n", '2', 32123, str, 49));
+    printf("printf printing printf: %d\n\n", printf("aa \n%c\n%d\n%%\n%s\n%c\n", '2', 32123, str, 49));
+	printf("\n%c\n", 49);
+    return (0);
 }
 
