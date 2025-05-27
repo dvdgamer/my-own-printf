@@ -1,3 +1,9 @@
+#include <stdio.h>
+#include "libft/libft.h"
+#include <stddef.h>
+#include <limits.h>
+#include "libftprintf.h"
+
 int main(void)
 {
     int len1;

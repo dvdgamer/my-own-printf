@@ -10,13 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "personal_libft/libft.h"
+#include "libft/libft.h"
 #include <unistd.h>
 
 void	ft_putchar(int c)
 {
 	write(1, &c, 1);
 }
+
 void	ft_putlowerhex(int c)
 {
 	ft_putstr_fd(c, 1);
