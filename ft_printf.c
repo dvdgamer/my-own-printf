@@ -6,12 +6,12 @@
 /*   By: dponte <dponte@student.codam.nl>            +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2025/06/09 15:46:24 by dponte       #+#    #+#                  */
-/*   Updated: 2025/06/09 16:53:56 by dponte       ########   odam.nl          */
+/*   Updated: 2025/06/09 17:10:04 by dponte       ########   odam.nl          */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
-#include "libftprintf.h"
+#include "ft_printf.h"
 #include <stdarg.h>
 
 // Same as:

@@ -6,12 +6,12 @@
 /*   By: dponte <dponte@student.codam.nl>            +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2025/06/09 12:48:00 by dponte       #+#    #+#                  */
-/*   Updated: 2025/06/09 13:08:59 by dponte       ########   odam.nl          */
+/*   Updated: 2025/06/09 17:10:19 by dponte       ########   odam.nl          */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 void	ft_putchar_and_count(int c, int *count)
 {
