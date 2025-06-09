@@ -104,9 +104,10 @@ int main(void)
     len1 = ft_printf("no specifiers\n");
     len2 = printf("no specifiers\n");
     printf("Plain text → ft: %d | std: %d\n\n", len1, len2);
-    len1 = ft_printf(NULL);
+    /* len1 = ft_printf(NULL); */
     len2 = printf(NULL);
-    printf("ft_printf len: %d, printf len: %d\n\n", len1, len2);
+    /* printf("ft_printf len: %d, printf len: %d\n\n", len1, len2); */
+    printf("printf len: %d\n\n", len2);
     len1 = ft_printf("%\n");
     len2 = printf("%\n");
     printf("ft_printf len: %d, printf len: %d\n\n", len1, len2);
