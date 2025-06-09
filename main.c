@@ -49,6 +49,9 @@ int main(void)
     len1 = ft_printf("Ints: %d %d %d %d %d\n", 0, 1, -1, 1000, -1000);
     len2 = printf("Ints: %d %d %d %d %d\n", 0, 1, -1, 1000, -1000);
     printf("Ints → ft: %d | std: %d\n\n", len1, len2);
+
+	printf("---------------------------------------------------------\n");
+
     len1 = ft_printf("Zero pointer: %p, zero int: %d, zero unsigned: %u\n", NULL, 0, 0u);
     len2 = printf("Zero pointer: %p, zero int: %d, zero unsigned: %u\n", NULL, 0, 0u);
     printf("ft_printf len: %d, printf len: %d\n\n", len1, len2);
@@ -68,6 +71,9 @@ int main(void)
     len1 = ft_printf("Pointer: %p\n", &x);
     len2 = printf("Pointer: %p\n", &x);
     printf("ft_printf len: %d, printf len: %d\n\n", len1, len2);
+	
+	printf("---------------------------------------------------------\n");
+
     len1 = ft_printf("Null pointer: %p\n", (void *)0);
     len2 = printf("Null pointer: %p\n", (void *)0);
     printf("Null pointer → ft: %d | std: %d\n\n", len1, len2);
@@ -97,6 +103,7 @@ int main(void)
     len1 = ft_printf("Result: %d\n", ft_printf("%d", 42));
     len2 = printf("Result: %d\n", printf("%d", 42));
     printf("Nested simple → ft: %d | std: %d\n\n", len1, len2);
+	printf("---------------------------------------------------------\n");
     len1 = ft_printf("A[%s]B\n",
     ft_printf("X=%d", 5) > 0 ? "ok" : "err");
     len2 = printf("A[%s]B\n", printf("X=%d", 5) > 0 ? "ok" : "err");
@@ -104,9 +111,9 @@ int main(void)
     len1 = ft_printf("no specifiers\n");
     len2 = printf("no specifiers\n");
     printf("Plain text → ft: %d | std: %d\n\n", len1, len2);
-    /* len1 = ft_printf(NULL); */
+    len1 = ft_printf(NULL);
     len2 = printf(NULL);
-    /* printf("ft_printf len: %d, printf len: %d\n\n", len1, len2); */
+    printf("ft_printf len: %d, printf len: %d\n\n", len1, len2);
     printf("printf len: %d\n\n", len2);
     len1 = ft_printf("%\n");
     len2 = printf("%\n");
