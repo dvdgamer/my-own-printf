@@ -6,7 +6,7 @@
 /*   By: dponte <dponte@student.codam.nl>            +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2025/06/09 15:46:24 by dponte       #+#    #+#                  */
-/*   Updated: 2025/06/09 16:43:20 by dponte       ########   odam.nl          */
+/*   Updated: 2025/06/09 16:53:56 by dponte       ########   odam.nl          */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	handle_identifiers(int c, va_list *args, int *count)
 
 	if (c == 'x' || c == 'X' || c == 'p')
 		handle_hex(args, c, count);
+	else if (c == '%')
+		ft_putchar_and_count('%', count);
 	else if (c == 'c')
 		ft_putchar_and_count(va_arg(*args, int), count);
 	else if (c == 'd' || c == 'i')
@@ -87,29 +89,23 @@ int	ft_printf(const char *s, ...)
 	va_list	args;
 	int		count;
 
-	va_start(args, s);
 	count = 0;
 	if (s == NULL)
 		return (-1);
+	va_start(args, s);
 	while (*s)
 	{
 		if (*s == '%')
 		{
 			s++;
-			if (*s == '%')
-				ft_putchar_and_count('%', &count);
-			else if (*s)
+			if (*s)
 				handle_identifiers(*s, &args, &count);
 			else
-			{
-				va_end(args);
-				return (-1);
-			}
+				return (va_end(args), -1);
 		}
-		else 
+		else
 			ft_putchar_and_count(*s, &count);
 		s++;
 	}
-	va_end(args);
-	return (count);
+	return (va_end(args), count);
 }
