@@ -6,7 +6,7 @@
 /*   By: dponte <dponte@student.codam.nl>            +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2025/06/09 15:46:24 by dponte       #+#    #+#                  */
-/*   Updated: 2025/06/09 16:01:41 by dponte       ########   odam.nl          */
+/*   Updated: 2025/06/09 16:43:20 by dponte       ########   odam.nl          */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,10 @@ void	handle_identifiers(int c, va_list *args, int *count)
 			ft_putstr_and_count(str, count);
 	}
 	else
-		return ;
+	{
+		ft_putchar_and_count('%', count);
+		ft_putchar_and_count(c, count);
+	}
 }
 
 int	ft_printf(const char *s, ...)
@@ -93,16 +96,18 @@ int	ft_printf(const char *s, ...)
 		if (*s == '%')
 		{
 			s++;
-			if (*s)
+			if (*s == '%')
+				ft_putchar_and_count('%', &count);
+			else if (*s)
 				handle_identifiers(*s, &args, &count);
 			else
 			{
 				va_end(args);
 				return (-1);
 			}
-			s++;
 		}
-		ft_putchar_and_count(*s, &count);
+		else 
+			ft_putchar_and_count(*s, &count);
 		s++;
 	}
 	va_end(args);

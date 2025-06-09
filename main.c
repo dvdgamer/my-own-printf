@@ -103,7 +103,6 @@ int main(void)
     len1 = ft_printf("Result: %d\n", ft_printf("%d", 42));
     len2 = printf("Result: %d\n", printf("%d", 42));
     printf("Nested simple → ft: %d | std: %d\n\n", len1, len2);
-	printf("---------------------------------------------------------\n");
     len1 = ft_printf("A[%s]B\n",
     ft_printf("X=%d", 5) > 0 ? "ok" : "err");
     len2 = printf("A[%s]B\n", printf("X=%d", 5) > 0 ? "ok" : "err");
@@ -118,6 +117,7 @@ int main(void)
     len1 = ft_printf("%\n");
     len2 = printf("%\n");
     printf("ft_printf len: %d, printf len: %d\n\n", len1, len2);
+	printf("---------------------------------------------------------\n");
     len1 = ft_printf("Percent sign: %%\n");
     len2 = printf("Percent sign: %%\n");
     printf("ft_printf len: %d, printf len: %d\n\n", len1, len2);
