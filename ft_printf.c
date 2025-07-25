@@ -6,7 +6,7 @@
 /*   By: dponte <dponte@student.codam.nl>            +#+                      */
 /*                                                  +#+                       */
 /*   Created: 2025/05/23 11:38:09 by dponte       #+#    #+#                  */
-/*   Updated: 2025/05/25 14:44:10 by dponte       ########   odam.nl          */
+/*   Updated: 2025/05/25 14:58:09 by dponte       ########   odam.nl          */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	ft_putnbr(int n)
 	}
 	if (num >= 10)
 		ft_putnbr(num / 10);
+	// fix
 	putchar((num % 10) + '0');
 }
 
@@ -37,48 +38,37 @@ void	ft_putstr(char *s)
 	write(1, s, strlen(s));
 }
 
-void	handle_hex(int c);
+void	handle_hex(int c)
+{
+	putchar(c);
+}
 
 void	handle_identifiers(int c, va_list *args)
 {
-	if (c == 'h' || c == 'x'|| c == 'X')
+	if (c == 'h' || c == 'x'|| c == 'X' || c == 'p')
+	{
 		handle_hex(c);
-	else if (c == 'c')
+	} else if (c == 'c')
 	{
 		int	ch;
 		ch = va_arg(*args, int);
 		putchar(ch);
-	}
-	else if (c == 'd' || c == 'i')
+	} else if (c == 'd' || c == 'i')
 	{
 		int	d;
 		d = va_arg(*args, int);
 		ft_putnbr(d);
-	}
-	else if (c == '%')
+	} else if (c == '%')
+	{
 		putchar('%');
-	if (c == 's')
+	} else if (c == 's')
 	{
-		char	*str;
-		str = va_arg(*args, char *);
-		ft_putstr(str);
-	}
-	else if (c == 'p')
-	{
-		void	*ptr;
-		ptr = va_arg(*args, void*);
-		ft_putstr(ptr);
-	}
-	else
-		return ;//invalid identifier
+	char	*str;
+	str = va_arg(*args, char *);
+	ft_putstr(str);
+} else
+	return ;//invalid identifier
 }
-//		if == 's' -> putstr
-//		if == 'p' -> printnbr in hex??
-//		if == 'd' -> print decimal
-//		if == 'i' -> putnbr
-//		if == 'u' -> print unsigned decimal
-//		if == 'x' -> puthex_lowercase?
-//		if == 'X' -> puthex_uppercase?
 
 int	ft_printf(const char *s, ...)
 {
@@ -116,8 +106,7 @@ int main(void)
 {
     char *str = "Hello";
     ft_printf("aa\n");
-    ft_printf("aa \n%c\n%d\n%%\n%s\n%c\n%", '2', 32123, str, 49);
-	printf("\n%c\n%", 49);
+    ft_printf("aa \n%c\n%d\n%%\n%s\n%c\n%p\n%", '2', 32123, str, 49, str);
+	printf("\n%c\n", 49);
     return 0;
 }
-
